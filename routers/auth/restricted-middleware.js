@@ -1,0 +1,22 @@
+const bcrypt = require('bcryptjs');
+
+const userdb = require('../../database/dbConfig.js');
+
+module.exports = (req, res, next) => {
+    const { username, password } = req.headers;
+
+    if(username && password) {
+        userdb('users').where({ username }).first().then(user => {
+            if (user && bcrypt.compareSync(password, user.password)) {
+                next();
+            } else {
+                res.status(401).json({ message: 'Your credentials are invalid!'});
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ message: `Ran into an unexpected error: ${error}`});
+        });
+    } else {
+        res.status(400).json({ message: `You didn't provide all the credentials`});
+    }
+};
