@@ -13,7 +13,7 @@ class Users extends Component {
               authorization: token,
           },
       };
-      axios.get('http://localhost:5000/api/users')
+      axios.get('http://localhost:5000/api/users', reqOptions)
       .then(res => {
         //   console.log(res);
           this.setState({ users: res.data})
