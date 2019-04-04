@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, NavLink} from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 
 import Home from './Users/Home';
 import Login from './auth/Login';
 import Users from './Users/Users';
+import Signup from './auth/Signup';
 
 class App extends Component {
   render() {
@@ -15,22 +16,32 @@ class App extends Component {
         <nav>
           <NavLink to='/' >Home</NavLink> {' ||| '}
 
-          <NavLink to='/login' >Log In</NavLink> {' ||| '}
+          <NavLink to='/signup' >Sign up</NavLink> {' ||| '}
+
+          <NavLink to='/signin' >Log In</NavLink> {' ||| '}
 
           <NavLink to='/users' >Users</NavLink>
+
+          <button onClick={this.logout}>Log out</button>
 
         </nav>
       </header>
 
       <div>
         <Route path='/' exact component={Home} />
-        <Route path='/login' component={Login} />
+        <Route path='/signup' component={Signup} />
+        <Route path='/signin' component={Login} />
         <Route path='/users' component={Users} />
       </div>
         
       </>
     );
   }
+
+  logout = () => {
+    localStorage.removeItem('jsonWebToken');
+    this.props.history.push('/signin');
+  };
 }
 
-export default App;
+export default withRouter(App);
