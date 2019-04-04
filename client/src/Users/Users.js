@@ -7,12 +7,17 @@ class Users extends Component {
   };
   
   componentDidMount() {
+      const token = localStorage.getItem('jsonWebToken');
+      const reqOptions = {
+          headers: {
+              authorization: token,
+          },
+      };
       axios.get('http://localhost:5000/api/users')
       .then(res => {
         //   console.log(res);
           this.setState({ users: res.data})
-      })
-
+      });
   }
 
   render() {
