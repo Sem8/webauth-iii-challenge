@@ -46,9 +46,9 @@ class Login extends Component {
     axios
       .post("http://localhost:5000/api/auth/login", this.state)
       .then(res => {
-          localStorage.setItem('jsonWebToken', res.data.token);
+        localStorage.setItem("jsonWebToken", res.data.token);
 
-          this.props.history.push('/users');
+        this.props.history.push("/users");
       })
       .catch(error => console.error(error));
   };

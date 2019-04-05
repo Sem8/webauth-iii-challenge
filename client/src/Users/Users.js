@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, withRouter } from "react-router-dom";
 
 import Signup from "../auth/Signup";
 
@@ -33,7 +33,7 @@ class Users extends Component {
   render() {
     return (
       <>
-        <NavLink to="/signup">signup</NavLink>
+        {/* <NavLink to="/signup">Sign up</NavLink> */}
 
         <Route
           path="/signup"
@@ -71,4 +71,4 @@ class Users extends Component {
   };
 }
 
-export default Users;
+export default withRouter(Users);
