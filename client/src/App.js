@@ -5,7 +5,7 @@ import { Route, NavLink, withRouter } from 'react-router-dom';
 import Home from './Users/Home';
 import Login from './auth/Login';
 import Users from './Users/Users';
-import Signup from './auth/Signup';
+
 
 class App extends Component {
   render() {
@@ -19,8 +19,8 @@ class App extends Component {
           <NavLink to='/signup' >Sign up</NavLink> {' ||| '}
 
           <NavLink to='/signin' >Log In</NavLink> {' ||| '}
-
           <NavLink to='/users' >Users</NavLink>
+         
 
           <button onClick={this.logout}>Log out</button>
 
@@ -28,9 +28,9 @@ class App extends Component {
       </header>
 
       <div>
-        <Route path='/' exact component={Home} />
-        <Route path='/signup' component={Signup} />
+        <Route path='/' exact component={Home} />        
         <Route path='/signin' component={Login} />
+        <Route path='/signup' component={Users} />
         <Route path='/users' component={Users} />
       </div>
         
